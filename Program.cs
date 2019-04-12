@@ -8,45 +8,61 @@ namespace CodilityTest
     {
         public static void Main(string[] args)
         {
-            int N = 9;
             var result = MaxBinaryGap(15);
             Console.ReadKey();
         }
 
         public static int MaxBinaryGap(int N){
 
-            var binaryGapResult = new List<int>();
+            const int ZERO_GAPS = 0;
 
-            var oneIndexStorage = new List<int>();
+            var binaryRep = binaryStringRepresentation(N);
 
-            var binaryRep = binaryRepresentation(N);
+            var indexStore = GetIndexStoreGivenBinaryRep(binaryRep);
 
-            for (int i = 0; i < binaryRep.Length; i++){
-                if(binaryRep[i]=='1'){
-                    oneIndexStorage.Add(i);
-                }
+            if(!ResultIsValid(indexStore)){
+                return ZERO_GAPS;
             }
 
-            //test invalid conditions
-            if(oneIndexStorage.Count == 0 || oneIndexStorage.Count == 1){
-                return 0;
-            }
+            var binaryGaps = computeBinaryGapsGivenIndexStore(indexStore);
 
-			//compute consecutive diffs
-			//[0,3]
-			for (int j = 0; j < oneIndexStorage.Count;j++) {
-
-                if(j<oneIndexStorage.Count-1){
-                    binaryGapResult.Add(oneIndexStorage[j+1] - oneIndexStorage[j] - 1);
-                }
-
-            }
-            return binaryGapResult.Max();
+            return binaryGaps.Max();
         }
 
-        static string binaryRepresentation(int number){
-            var binaryRepresentationStr = Convert.ToString(number, 2);
-            return binaryRepresentationStr;
+        static string binaryStringRepresentation(int number){
+            return Convert.ToString(number, 2);
         }
+
+		static List<int> GetIndexStoreGivenBinaryRep(string binaryRep)
+		{
+			var indexStore = new List<int>();
+
+			for (int i = 0; i < binaryRep.Length; i++)
+			{
+				if (binaryRep[i] == '1')
+				{
+					indexStore.Add(i);
+				}
+			}
+			return indexStore;
+		}
+
+		static bool ResultIsValid(List<int> indexStore)
+		{
+			return (indexStore.Count == 0 || indexStore.Count == 1) ? false : true;
+		}
+
+		static List<int> computeBinaryGapsGivenIndexStore(List<int> indexStore)
+		{
+			var binaryGaps = new List<int>();
+			for (int j = 0; j < indexStore.Count; j++)
+			{
+				if (j < indexStore.Count - 1)
+				{
+					binaryGaps.Add(indexStore[j + 1] - indexStore[j] - 1);
+				}
+			}
+			return binaryGaps;
+		}
     }
 }
