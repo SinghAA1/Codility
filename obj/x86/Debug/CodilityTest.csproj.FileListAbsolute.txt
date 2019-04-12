@@ -1,0 +1,5 @@
+/Users/amansingh/Projects/CodilityTest/CodilityTest/bin/Debug/CodilityTest.exe
+/Users/amansingh/Projects/CodilityTest/CodilityTest/bin/Debug/CodilityTest.pdb
+/Users/amansingh/Projects/CodilityTest/CodilityTest/obj/x86/Debug/CodilityTest.csproj.CoreCompileInputs.cache
+/Users/amansingh/Projects/CodilityTest/CodilityTest/obj/x86/Debug/CodilityTest.exe
+/Users/amansingh/Projects/CodilityTest/CodilityTest/obj/x86/Debug/CodilityTest.pdb
